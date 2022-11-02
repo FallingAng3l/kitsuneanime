@@ -10,5 +10,6 @@ module.exports = async (app) => {
         
         app.get('/', (req, res) => res.redirect('/home'));
         app.get(`/${pull.page}`, async (req, res) => { pull.run(req, res) });
+        app.get('*', (req, res) => res.render('404'));
     }
 }

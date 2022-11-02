@@ -1,2 +1,3 @@
 /node_modules
+/pages/static/exemple.ejs
 package-lock.json
