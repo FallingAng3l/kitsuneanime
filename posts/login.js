@@ -1,19 +1,42 @@
-const err = require('../errs.json').login,
-    user = require('../models/user');
+const user = require('../models/user');
 
-module.exports.run = async (req, res) => {
-
+module.exports.run = async (req, res, recaptcha) => {
     if (req.body.email === '' || req.body.password === '') {
-        err.err1 = true
         return res.render('login', {
-            err
+            err1: true,
+            err2: false,
+            err3: false,
+            err4: false
         })
     }
 
     let doc = await user.findOne({ email: req.body.email })
-    if(!doc) {
-        err.err2 = true
+    if (!doc) {
+        return res.render('login', {
+            err1: false,
+            err2: true,
+            err3: false,
+            err4: false
+        })
     }
-    console.log(req.body)
-    res.redirect('/login')
+
+    if (req.body.password !== doc.password) {
+        return res.render('login', {
+            err1: false,
+            err2: false,
+            err3: true,
+            err4: false
+        })
+    }
+
+    if (req.recaptcha.error) {
+        return res.render('login', {
+            err1: false,
+            err2: false,
+            err3: false,
+            err4: true
+        })
+    }
+    res.cookie('code', doc.token, { maxAge: null });
+    res.redirect('/');
 }
