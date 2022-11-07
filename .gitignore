@@ -2,3 +2,14 @@
 /pages/static/exemple.ejs
 package-lock.json
 .env
+
+
+div(class="collapse navbar-collapse" id="navbarNavAltMarkup")
+               ul.navbar-nav
+                if user 
+                    li.nav-item 
+                    a(class='nav-link active' href='/me') doc.user
+                else 
+                    li.nav-item 
+                        a(class='nav-link active' href='/login') Login
+                
