@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/F3L1P3D4RKofc/kitsuneanime#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2",
+    "pug": "^3.0.2"
   }
 }

@@ -1,0 +1,13 @@
+@font-face {
+    font-family: kitsune;
+    src: url('/loki.ttf');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(12, 12, 12);
+}
