@@ -1,0 +1,24 @@
+doctype html 
+html(lang='pt-br')
+    head 
+        include includes/head.pug
+        title KitsuneAnimes || Login 
+    body 
+        include includes/nav.pug
+
+        h1(class='text-center mt-4' style='font-family: kitsune; color: white;') Login
+        div(class='container-md mt-5' style='background-color: antiquewhite; max-width: 400px; border-radius: 12px;')
+            br
+            include includes/errors/login.pug
+            form(action='/login' method='post')
+                .mb-3 
+                    label.form-label(for='email') Email 
+                    input.form-control(type='email' id='email' name='email')
+                .mb-3
+                    label.form-label(for='password') Senha 
+                    input.form-control(type='password' id='password' name='password')
+                .mb-3
+                    .g-recaptcha(data-theme='dark' data-sitekey='6LcBOfQiAAAAABzooizBsf-TA7rxF_kkQoMiHnfG')
+                button(class='btn btn-primary' role='button' type='submit') Entrar
+            hr
+            br  
