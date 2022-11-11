@@ -13,7 +13,7 @@ app.set('views', __dirname + '/pages');
 app.use(express.static(__dirname + '/pages/static'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser({ path: '/' }));
 
 for (let x of ['routes']) require(`./handlers/${x}`)(app);
 
