@@ -11,6 +11,7 @@ route.get('/', async (req, res) => {
     };
 
     let user = await users.findOne({ token: cookie });
+    if (user.verification.state === false) return res.redirect('/verify')
     res.render('index', {
         user
     });

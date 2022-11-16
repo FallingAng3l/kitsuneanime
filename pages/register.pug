@@ -1,0 +1,29 @@
+doctype html
+html(lang="pt-br")
+    head
+        include includes/head.pug
+        title KitsuneAnimes || Register
+    body 
+        include includes/nav.pug
+
+        h1(class='text-center my-5' style='font-family: kitsune; color: white;') Criar uma conta
+        div(class='container-md my-5' style='background-color: antiquewhite; max-width: 400px; border-radius: 12px;')
+            br
+            include includes/errors/register.pug
+            form(action='/register' method='post')
+                .mb-3 
+                    label.form-label(for='email') Email 
+                    input.form-control(type='email' id='email' name='email')
+                .mb-3 
+                    label.form-label(for='username') Nome de usuário
+                    input.form-control(type='text' id='username' name='username')
+                .mb-3 
+                    label.form-label(for='pwd') Senha 
+                    input.form-control(type='text' id='pwd' name='pwd')
+                .mb-3 
+                    label.form-label(for='pwd2') Reensira a senha 
+                    input.form-control(type='text' id='pwd2' name='pwd2')
+                .mb-3 
+                    .g-recaptcha(data-theme='dark' data-sitekey='6LcBOfQiAAAAABzooizBsf-TA7rxF_kkQoMiHnfG')
+                button(class='btn btn-primary' role='button' type='submit') Enviar
+            br

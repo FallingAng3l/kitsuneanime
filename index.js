@@ -4,9 +4,22 @@ const express = require('express'),
     mongoose = require('mongoose'),
     cookieParser = require('cookie-parser'),
     Recaptcha = require('express-recaptcha').RecaptchaV2,
-    recaptcha = new Recaptcha(process.env.siteKey, process.env.secretKey);
+    recaptcha = new Recaptcha(process.env.siteKey, process.env.secretKey),
+    email = require('nodemailer');
 
 global.recaptcha = recaptcha;
+global.remetente = email.createTransport({
+    host: 'smtp-mail.outlook.com',
+    secureConnection: false,
+    tls: {
+        ciphers:'SSLv3'
+        },
+    port: '587',
+    auth: {
+        user: process.env.email,
+        pass: process.env.pwd
+    }
+});
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/pages');
