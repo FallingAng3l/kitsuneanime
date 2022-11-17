@@ -56,6 +56,7 @@ route.post('/', recaptcha.middleware.verify, async (req, res) => {
         subject: 'Código de verificação!',
         text: `Esse aqui é seu código de verificação ${code}`
     })
+    
     let token = Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').substr(0, 20);
     let docu = new users({
         email: req.body.email,

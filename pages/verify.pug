@@ -1,0 +1,18 @@
+doctype html 
+html(lang='pt-br')
+    head 
+        include includes/head.pug
+        title KitsuneAnimes || Verifiicar Email 
+    body 
+        include includes/nav.pug
+        h1(class='text-center my-4' style='font-family: kitsune; color: white') Verificando o email
+        .container-md 
+            h4(class='text-center my-4' style='color: white') Um email de verificação foi enviado para #{user.email}, digite-o a baixo! 
+
+            form(action='/verify' method='post')
+                .mb-3(style='max-width: 250px; color: white')
+                    include includes/errors/verify.pug
+                    label.form-label(for='code') Código de verificação
+                    input.form-control(type='text' id='code' name='code')
+                button(class='btn btn-primary' role='button' type='submit') Enviar
+                a(class='btn btn-primary mx-3'  role='button' href='/verify/email') Reenviar email
