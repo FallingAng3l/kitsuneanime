@@ -1,0 +1,19 @@
+doctype html 
+html(lang='pt-br')
+    head 
+        include includes/head.pug
+        title KitsuneAnimes || Recuperar a senha 
+    body 
+        include includes/nav.pug
+        h1(class='text-center my-3' style='color: white; font-family: kitsune;') Recuperando a senha.
+        h4(class='text-center my-3' style='color: white;') Um código de verificação foi enviado para #{user.email}, insira-o a baixo! 
+        .container-md(style='max-width: 350px;')
+            include includes/errors/recpwd2.pug
+            form(method='post' action='/recoverypwd/step2')
+                .mb-3(style='color: white')
+                    label.form-label(for='code') Código de recuperação.
+                    input.form-control(id='code' type='text' name='code')
+                .mb-3(style='color: white')
+                    label.form-label(for='pwd') Nova senha.
+                    input.form-control(id='pwd' type='text' name='password')
+                button(class='btn btn-primary' role='button' type='submit') Enviar

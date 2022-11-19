@@ -48,7 +48,8 @@ route.post('/', recaptcha.middleware.verify, async (req, res) => {
             err6: true
         })
     }
-    let code = Math.floor(Math.random() * 999999)
+    let code = Math.floor(Math.random() * 999999),
+    code2 = Math.round(Math.random() * 999999);
 
     remetente.sendMail({
         from: process.env.email,
@@ -65,7 +66,7 @@ route.post('/', recaptcha.middleware.verify, async (req, res) => {
         password: req.body.pwd,
         token: token,
         admin: false,
-        recover: 'null',
+        recover: code2,
         verification: {
             code: code,
             state: false
