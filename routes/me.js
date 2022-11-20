@@ -7,7 +7,7 @@ route.get('/', async (req, res) => {
     if (!cookie) return res.redirect('/login');
 
     let user = await users.findOne({ token: cookie });
-
+    
     res.render('me', {
         user
     })
