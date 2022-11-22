@@ -1,0 +1,14 @@
+doctype html 
+html(lang='pt-br')
+    head 
+        include includes/head.pug
+        title KitsuneAnimes || Configurando perfil
+    body 
+        include includes/navbar.pug 
+        div(class='container-md my-5 text-center')
+            h1(class='text-center my-5' style='color: white; font-family: kitsune;') Configurações do perfil!
+            include includes/errors/config.pug
+            div(class='btn-group-vertical my-5' role='group')
+                button(class='btn btn-dark' role='button' data-bs-toggle='modal' data-bs-target='#modal-1') Alterar Avatar
+
+                include includes/modals/config.pug 

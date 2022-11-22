@@ -35,7 +35,7 @@ route.post('/', recaptcha.middleware.verify, async (req, res) => {
         })
     };
 
-    res.cookie('token', doc.token, { maxAge: 999999 });
+    res.cookie('token', doc.token, { maxAge: 999999999 });
     if (doc.verification.state === false) return res.redirect('/verify')
     res.redirect('/')
 })

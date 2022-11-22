@@ -5,21 +5,11 @@ const express = require('express'),
     cookieParser = require('cookie-parser'),
     Recaptcha = require('express-recaptcha').RecaptchaV2,
     recaptcha = new Recaptcha(process.env.siteKey, process.env.secretKey),
-    email = require('nodemailer');
-
-global.recaptcha = recaptcha;
-global.remetente = email.createTransport({
-    host: 'smtp-mail.outlook.com',
-    secureConnection: false,
-    tls: {
-        ciphers:'SSLv3'
-        },
-    port: '587',
-    auth: {
-        user: process.env.email,
-        pass: process.env.pwd
-    }
-});
+    email = require('nodemailer'),
+    busboy = require('connect-busboy'),
+    { ImgurClient } = require('imgur'),
+    client = new ImgurClient({ clientId: process.env.imgur});
+require('./handlers/global')(recaptcha, client, email);
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/pages');
@@ -27,6 +17,7 @@ app.use(express.static(__dirname + '/pages/static'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser({ path: '/' }));
+app.use(busboy());
 
 for (let x of ['routes']) require(`./handlers/${x}`)(app);
 
