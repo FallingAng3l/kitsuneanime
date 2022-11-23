@@ -2,7 +2,7 @@ doctype html
 html(lang='pt-br')
     head 
         include includes/head.pug
-        title KitsuneAnimes ||  user.username
+        title KitsuneAnimes ||  #{user.username}
     body 
         - let avatar = user.avatar
         

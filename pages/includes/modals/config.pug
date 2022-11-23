@@ -12,3 +12,38 @@ body
                                     .modal-footer
                                         button(type='button' class='btn btn-secondary' data-bs-dismiss='modal') Cancelar
                                         button(type='submit' value='Upload' class='btn btn-primary') Enviar
+    
+    div(class='modal fade' id='modal-2' tabindex='-1' aria-hidden='true')
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                h1(class='modal-title fs-5' id='modallabel-2') Alterando Nome de Usuário!
+                            .modal-body
+                                h3.text-center Escolha o seu novo nome de usuário! 
+                                form(action='/me/config' method='post')
+                                    .mb-3 
+                                        label(for='username' class='form-label') Nome de usuário.
+                                        input(class='form-control form-control-sm' name='username' type='text' id='username')
+                                    .modal-footer
+                                        button(type='button' class='btn btn-secondary' data-bs-dismiss='modal') Cancelar
+                                        button(type='submit' value='Upload' class='btn btn-primary') Enviar
+
+    div(class='modal fade' id='modal-3' tabindex='-1' aria-hidden='true')
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                h1(class='modal-title fs-5' id='modallabel-2') Alterando Senha!
+                            .modal-body
+                                h3.text-center Escolha a sua nova senha! 
+                                form(action='/me/config' method='post')
+                                    .mb-3 
+                                        label(for='pwd' class='form-label') Senha antiga.
+                                        input(class='form-control form-control-sm' name='pwd' type='text' id='pwd')
+                                    .mb-3
+                                        label(for='pwd2' class='form-label') Nova antiga.
+                                        input(class='form-control form-control-sm' name='pwd2' type='text' id='pwd2')
+                                    .mb-3
+                                        .g-recaptcha(data-theme='dark' data-sitekey='6LcBOfQiAAAAABzooizBsf-TA7rxF_kkQoMiHnfG')
+                                    .modal-footer
+                                        button(type='button' class='btn btn-secondary' data-bs-dismiss='modal') Cancelar
+                                        button(type='submit' value='Upload' class='btn btn-primary') Enviar

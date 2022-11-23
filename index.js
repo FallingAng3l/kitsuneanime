@@ -8,8 +8,21 @@ const express = require('express'),
     email = require('nodemailer'),
     busboy = require('connect-busboy'),
     { ImgurClient } = require('imgur'),
-    client = new ImgurClient({ clientId: process.env.imgur});
-require('./handlers/global')(recaptcha, client, email);
+    client = new ImgurClient({ clientId: process.env.imgur });
+global.recaptcha = recaptcha;
+global.client = client;
+global.remetente = email.createTransport({
+    host: 'smtp-mail.outlook.com',
+    secureConnection: false,
+    tls: {
+        ciphers: 'SSLv3'
+    },
+    port: '587',
+    auth: {
+        user: process.env.email,
+        pass: process.env.pwd
+    }
+});
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/pages');
