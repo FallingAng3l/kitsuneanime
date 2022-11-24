@@ -12,4 +12,6 @@ html(lang='pt-br')
             form(method='post' action='/recoverypwd')
                 .mb-3
                     input.form-control(type='email' name='email')
+                .mb-3
+                    .g-recaptcha(data-theme='dark' data-sitekey='6LcBOfQiAAAAABzooizBsf-TA7rxF_kkQoMiHnfG')
                 button(class='btn btn-primary' type='submit' role='button') Enviar

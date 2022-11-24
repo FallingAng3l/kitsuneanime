@@ -70,6 +70,11 @@ route.post('/', recaptcha.middleware.verify, async (req, res) => {
         verification: {
             code: code,
             state: false
+        },
+        currence: {
+            lv: 1,
+            xp: 0,
+            coins: 0
         }
     })
 

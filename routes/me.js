@@ -24,7 +24,7 @@ route.get('/config', async (req, res) => {
     })
 })
 
-route.post('/config', async (req, res) => {
+route.post('/config', recaptcha.middleware.verify, async (req, res) => {
     let cookie = req.cookies.token,
         user = await users.findOne({ token: cookie });
 
@@ -51,7 +51,10 @@ route.post('/config', async (req, res) => {
                 await users.findOneAndUpdate({ token: cookie }, { $set: { avatar: a.data.link } })
             }
 
-            res.redirect('/me')
+            res.render('config',{
+                user,
+                true1: true
+            })
         });
     });
 
@@ -80,11 +83,83 @@ route.post('/config', async (req, res) => {
 
     if (req.body.username) {
         await users.findOneAndUpdate({ token: cookie }, { $set: { username: req.body.username } });
-        res.redirect('/me')
+        return res.render('config', {
+            user,
+            true2: true
+        })
     }
 
     //senha
-    
+    if(req.body.pwd === '' || req.body.pwd2 === '') {
+        return res.render('config', {
+            user,
+            err5: true
+        })
+    }
+
+    if(req.body.pwd && req.body.pwd != user.password){
+        return res.render('config', {
+            user,
+            err6: true
+        })
+    }
+
+    if(req.body.pwd && req.body.pwd2 == user.password){
+        return res.render('config', {
+            user,
+            err7: true
+        })
+    }
+
+    if(req.body.pwd && req.body.pwd.length > 12 || req.body.pwd && req.body.pwd.length < 8 ) {
+        return res.render('config', {
+            user,
+            err8: true
+        })
+    }
+
+    if(req.body.pwd && req.recaptcha.error) {
+        return res.render('config', {
+            user,
+            err9: true
+        })
+    }
+
+    if(req.body.pwd2) {
+        await users.findOneAndUpdate({ token: cookie}, { $set: { password: req.body.pwd2 }})
+        return res.render('config', {
+            user,
+            true3: true
+        })
+    }
+
+    // deletar conta
+    if(req.body.pwd3 && req.body.pwd3 === '') {
+        return res.render('config', {
+            user,
+            err10: true
+        })
+    }
+
+    if(req.body.pwd3 && req.body.pwd3 != user.password) {
+        return res.render('config', {
+            user,
+            err11: true
+        })
+    }
+
+    if(req.body.pwd3 && req.recaptcha.error) {
+        return res.render('config', {
+            user,
+            err12: true
+        })
+    }
+
+    if(req.body.pwd3) {
+        await users.findOneAndDelete({ token: cookie })
+        res.clearCookie('token')
+        res.redirect('/')
+    }
 });
 
 module.exports = route;

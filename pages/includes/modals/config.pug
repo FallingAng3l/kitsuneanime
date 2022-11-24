@@ -47,3 +47,20 @@ body
                                     .modal-footer
                                         button(type='button' class='btn btn-secondary' data-bs-dismiss='modal') Cancelar
                                         button(type='submit' value='Upload' class='btn btn-primary') Enviar
+
+    div(class='modal fade' id='modal-4' tabindex='-1' aria-hidden='true')
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                h1(class='modal-title fs-5' id='modallabel-2') Deletando a conta!
+                            .modal-body
+                                h3.text-center Aviso! Deletar a sua conta é um ato irreversivel, não podemos voltar depois daqui! 
+                                form(action='/me/config' method='post')
+                                    .mb-3 
+                                        label(for='pwd' class='form-label') Senha.
+                                        input(class='form-control form-control-sm' name='pwd3' type='text' id='pwd')
+                                    .mb-3
+                                        .g-recaptcha(data-theme='dark' data-sitekey='6LcBOfQiAAAAABzooizBsf-TA7rxF_kkQoMiHnfG')
+                                    .modal-footer
+                                        button(type='button' class='btn btn-secondary' data-bs-dismiss='modal') Cancelar
+                                        button(type='submit' value='Upload' class='btn btn-danger') Deletar

@@ -11,6 +11,11 @@ const user = new Schema({
     verification: {
         code: Number,
         state: Boolean
+    },
+    currence: {
+        lv: Number,
+        xp: Number,
+        coins: Number
     }
 })
 
