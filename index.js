@@ -34,5 +34,7 @@ app.use(busboy());
 
 for (let x of ['routes']) require(`./handlers/${x}`)(app);
 
+app.get('*', async(req, res) => res.render('404'));
+
 app.listen('80', () => console.log('Site Online'));
 mongoose.connect(process.env.mongoUrl, () => console.log('Database Online'))

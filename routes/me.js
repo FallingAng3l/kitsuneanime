@@ -7,9 +7,14 @@ route.get('/', async (req, res) => {
     let cookie = req.cookies.token;
     if (!cookie) return res.redirect('/login');
 
-    let user = await users.findOne({ token: cookie });
-
+    let user = await users.findOne({ token: cookie }),
+    maxValue = 5000 * (Math.pow(2, user.currence.lv) - 1),
+    minValue = 5000 * (Math.pow(2, user.currence.lv) - 1) - 5000,
+    percent = Math.floor(user.currence.xp * 100 / maxValue);
+    
+    let bar = `<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: ${percent}%" aria-valuenow="${user.currence.xp}" aria-valuemin="minValue" aria-valuemax="${maxValue}"></div>`
     res.render('me', {
+        bar,
         user
     })
 })

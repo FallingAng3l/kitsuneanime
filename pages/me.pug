@@ -6,7 +6,6 @@ html(lang='pt-br')
     body 
         - let avatar = user.avatar
 
-
         include includes/navbar.pug
         .container-md 
             div(class='container-md text-center' style='background-image: url("https://cdn.discordapp.com/attachments/916660555543117854/1043684369996451860/unknown.png"); max-width: 500px; height: 150px; margin-top: 15px; border-radius: 15px; image-orientation:from-image;')
@@ -14,7 +13,7 @@ html(lang='pt-br')
                 h2.text-center(style='color: lavender;') 
                     | #{user.username}
                     if(user.admin)
-                        img(src='/admin.png' data-bs-toggle="tooltip" data-bs-title="Admin")
+                        img(src='https://i.imgur.com/6M5Z1Vm.png' data-bs-toggle="tooltip" data-bs-title="Admin")
 
             div(class='container-md text-center' style='max-width: 500px; margin-top: 5rem')
                 include includes/xpbar.pug
@@ -23,5 +22,4 @@ html(lang='pt-br')
                 a(class='btn btn-dark mx-1' href='/me/config' role='button') Configurações da conta
                 a(class='btn btn-danger mx-4' href='logout' role='button' ) Log Out
 
-    script(type='text/javascript' src='/scripts/default.js')
-        
+        script(type='text/javascript' src='/scripts/default.js')
