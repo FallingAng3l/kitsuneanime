@@ -11,3 +11,39 @@
 body {
     background-color: rgb(12, 12, 12);
 }
+
+@mixin make-container($padding-x: $container-padding-x) {
+    width: 100;
+    padding-right: $padding-x;
+    padding-left: $padding-x;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  // Usage
+  .custom-container {
+    @include make-container();
+  }
+
+  ::-webkit-scrollbar {
+      width: 5px;
+      height: 10px;
+      -webkit-border-radius: 16px;
+    }
+    
+    ::-webkit-scrollbar-track-piece {
+      background-color: #ffffff;
+      -webkit-border-radius: 3px;
+    }
+    
+    ::-webkit-scrollbar-thumb:vertical {
+      height: 5px;
+      background-color: rgb(236, 16, 16);
+      -webkit-border-radius: 3px;
+    }
+    
+    ::-webkit-scrollbar-thumb:horizontal {
+      width: 5px;
+      background-color: rgb(236, 16, 16);
+      -webkit-border-radius: 3px;
+    }

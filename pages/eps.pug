@@ -1,0 +1,23 @@
+doctype html 
+html(lang='pt-br')
+    head 
+        include includes/head.pug
+        title KitsuneAnimes || #{anime.name}
+    body 
+        - let thumbnail = anime.thumbnail 
+
+        include includes/navbar.pug
+        div(class='container-md my-5 text-center') 
+            div(class='row mx-2') 
+                .col-lg-5
+                    img.img-thumbnail(src= thumbnail style='height: 350px; width: 225px')
+                .col-lg-6
+                    h1.text-center(style='color: white;') 
+                        | #{anime.fullName}
+                    .overflow-auto(style='max-width: 480px; max-height: 120px; margin-top: 5%; color: white')
+                        | #{anime.description}
+            .container-lg
+                div(class='overflow-auto mx-5 my-4' style='max-height: 320px; max-width: 570px;')
+                    div(class='d-grid gap-1 col-auto')
+                        |!{kk}
+                        
